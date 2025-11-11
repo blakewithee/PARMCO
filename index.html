@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPi Bluetooth Motor Control Project</title>
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Inter font -->
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <style>
@@ -23,7 +21,6 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <!-- Header Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto max-w-6xl px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold text-gray-800">
@@ -32,10 +29,8 @@
             <div class="flex items-center space-x-4">
                 <a href="#system" class="text-gray-600 hover:text-blue-600 transition duration-300">System</a>
                 <a href="#components" class="text-gray-600 hover:text-blue-600 transition duration-300">Components</a>
-                <!-- ADDED THIS LINK -->
                 <a href="#hardware-setup" class="text-gray-600 hover:text-blue-600 transition duration-300">Hardware</a>
                 <a href="#stack" class="text-gray-600 hover:text-blue-600 transition duration-300">Stack</a>
-                <!-- EDIT: Replace '#' with your actual GitHub repo link -->
                 <a href="https://github.com/blakewithee/PARMCO.git" 
                    class="hidden md:inline-block bg-gray-800 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-900 transition duration-300">
                    View on GitHub
@@ -44,9 +39,7 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
         <section id="hero" class="bg-gray-900 text-white">
             <div class="container mx-auto max-w-6xl px-6 py-24 md:py-32 text-center">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
@@ -55,7 +48,6 @@
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
                     An embedded system to control a Raspberry Pi-driven motor from an iPhone app via Bluetooth LE.
                 </p>
-                <!-- EDIT: Replace '#' with your actual GitHub repo link -->
                 <a href="https://github.com/blakewithee/PARMCO.git" 
                    class="inline-block bg-blue-600 text-white font-bold text-lg py-4 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1">
                     View on GitHub
@@ -63,7 +55,6 @@
             </div>
         </section>
 
-        <!-- System-Level Description -->
         <section id="system" class="py-24">
             <div class="container mx-auto max-w-6xl px-6">
                 <div class="text-center mb-16">
@@ -75,26 +66,20 @@
                     </p>
                 </div>
                 
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    <!-- Text Description -->
-                    <!-- **** CHANGED lg:w-1/2 to lg:w-1/3 **** -->
-                    <div class="lg:w-1/3">
+                <div class="flex flex-col gap-12">
+                    <div class="w-full">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data & Control Flow</h3>
                         <p class="text-lg text-gray-700 leading-relaxed space-y-4">
                             The flow of control begins with the user on the iPhone app. When a user adjusts the speed slider or taps a direction button, the app writes data to a specific characteristic on the BLE peripheral.
                             <br><br>
                             The Raspberry Pi, acting as the peripheral, constantly listens for these BLE characteristic updates. A C program running on the RPi receives the new data, parses it, and translates it into hardware commands.
                             <br><br>
-                            <!-- UPDATED L298N to L293D -->
                             These commands are sent to the L293D Motor Driver via the RPi's GPIO pins, managing both the speed (using PWM) and direction, which in turn drives the DC Motor.
                         </p>
                     </div>
                     
-                    <!-- System Diagram -->
-                    <!-- **** CHANGED lg:w-1/2 to lg:w-2/3 **** -->
-                    <div class="lg:w-1/2">
+                    <div class="w-full">
                         <div class="bg-white rounded-lg shadow-xl p-6 border border-gray-200">
-                            <!-- The 'src' now points to your local image -->
                             <img src="images/system.jpg" 
                                  alt="A schematic diagram of the motor and H-bridge circuit"
                                  class="rounded-md w-full h-auto">
@@ -104,10 +89,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </section>
 
-        <!-- Component Breakdown -->
         <section id="components" class="bg-white py-24">
             <div class="container mx-auto max-w-6xl px-6">
                 <div class="text-center mb-16">
@@ -121,10 +105,8 @@
 
                 <div class="grid md:grid-cols-3 gap-8">
                     
-                    <!-- Component 1: iOS App -->
                     <div class="bg-gray-800 text-white rounded-lg shadow-xl p-8 transform transition-transform hover:scale-105">
                         <div class="flex items-center justify-center bg-blue-600 rounded-full w-16 h-16 mb-6">
-                            <!-- Mobile phone icon -->
                             <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                             </svg>
@@ -140,10 +122,8 @@
                         </ul>
                     </div>
 
-                    <!-- Component 2: Raspberry Pi -->
                     <div class="bg-gray-800 text-white rounded-lg shadow-xl p-8 transform transition-transform hover:scale-105">
                         <div class="flex items-center justify-center bg-blue-600 rounded-full w-16 h-16 mb-6">
-                            <!-- CPU/Chip icon -->
                             <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m-2 6h2M7 7h10a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2z" />
                             </svg>
@@ -154,17 +134,14 @@
                         </p>
                         <ul class="list-disc list-inside space-y-2 text-gray-200">
                             <li><strong>OS:</strong> Raspberry Pi OS.</li>
-                            <!-- UPDATED Python to C -->
                             <li><strong>Logic:</strong> A C program.</li>
                             <li><strong>BLE:</strong> Uses BlueZ library (C).</li>
                             <li><strong>Hardware:</strong> Controls GPIO pins via `pigpio` or `wiringPi`.</li>
                         </ul>
                     </div>
 
-                    <!-- Component 3: Motor & Driver -->
                     <div class="bg-gray-800 text-white rounded-lg shadow-xl p-8 transform transition-transform hover:scale-105">
                         <div class="flex items-center justify-center bg-blue-600 rounded-full w-16 h-16 mb-6">
-                            <!-- Cog/Settings icon -->
                             <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -175,7 +152,6 @@
                             The physical hardware that translates digital signals into motion.
                         </p>
                         <ul class="list-disc list-inside space-y-2 text-gray-200">
-                            <!-- UPDATED L298N to L293D -->
                             <li><strong>Driver:</strong> L293D H-Bridge.</li>
                             <li><strong>Motor:</strong> Standard 12V DC Motor.</li>
                             <li><strong>Function:</strong> H-Bridge handles direction and power.</li>
@@ -187,13 +163,7 @@
             </div>
         </section>
 
-        <!-- 
-        ============================================================
-        == NEW SECTION: Hardware Setup & Operation
-        ============================================================
-        -->
-        <section id="hardware-setup" class="py-24"> <!-- Inherits bg-gray-100 from body -->
-            <div class="container mx-auto max-w-6xl px-6">
+        <section id="hardware-setup" class="py-24"> <div class="container mx-auto max-w-6xl px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                         Hardware Setup & Operation
@@ -205,7 +175,6 @@
 
                 <div class="space-y-12">
 
-                    <!-- Block 1: Circuit Overview -->
                     <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Circuit Operation</h3>
                         <p class="text-lg text-gray-700 leading-relaxed space-y-4">
@@ -217,7 +186,6 @@
                         </p>
                     </div>
 
-                    <!-- Block 1.5: Circuit Schematic -->
                     <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
                          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Circuit Schematic</h3>
                         <img src="images/Motor_Schematic.png" 
@@ -228,7 +196,6 @@
                         </p>
                     </div>
 
-                    <!-- Block 2: Pin Assignments Table -->
                     <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Raspberry Pi Pin Assignments (BCM)</h3>
                         <div class="overflow-x-auto rounded-lg border">
@@ -276,7 +243,6 @@
                         </div>
                     </div>
                     
-                    <!-- Block 3: Power & Safety -->
                     <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Power & Safety</h3>
                         <ul class="list-disc list-inside space-y-3 text-lg text-gray-700">
@@ -291,18 +257,12 @@
                 </div>
             </div>
         </section>
-        <!-- ================= END NEW SECTION ================= -->
-
-
-        <!-- Technology Stack -->
-        <!-- UPDATED class to maintain alternating color pattern -->
         <section id="stack" class="bg-white py-24">
             <div class="container mx-auto max-w-4xl px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
                     Technology Stack
                 </h2>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <!-- EDIT: Add/remove technologies as needed -->
                     <span class="bg-blue-100 text-blue-800 text-lg font-medium px-5 py-2 rounded-full">
                         Swift
                     </span>
@@ -312,7 +272,6 @@
                     <span class="bg-blue-100 text-blue-800 text-lg font-medium px-5 py-2 rounded-full">
                         CoreBluetooth
                     </span>
-                    <!-- UPDATED Python to C -->
                     <span class="bg-green-100 text-green-800 text-lg font-medium px-5 py-2 rounded-full">
                         C
                     </span>
@@ -334,11 +293,9 @@ edium px-5 py-2 rounded-full">
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-12">
         <div class="container mx-auto max-w-6xl px-6 text-center">
             <p>
-                <!-- EDIT: Replace '#' with your repo link and [Your Name] with your name -->
                 <a href="https://github.com/blakewithee/PARMCO.git" class="font-medium text-blue-400 hover:text-blue-500">View this project on GitHub</a>
             </p>
             <p class="mt-4">
