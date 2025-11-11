@@ -34,7 +34,7 @@
                 <a href="#components" class="text-gray-600 hover:text-blue-600 transition duration-300">Components</a>
                 <a href="#stack" class="text-gray-600 hover:text-blue-600 transition duration-300">Stack</a>
                 <!-- EDIT: Replace '#' with your actual GitHub repo link -->
-                <a href="https://github.com/blakewithee/PARMCO" 
+                <a href="#" 
                    class="hidden md:inline-block bg-gray-800 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-900 transition duration-300">
                    View on GitHub
                 </a>
@@ -54,7 +54,7 @@
                     An embedded system to control a Raspberry Pi-driven motor from an iPhone app via Bluetooth LE.
                 </p>
                 <!-- EDIT: Replace '#' with your actual GitHub repo link -->
-                <a href="https://github.com/blakewithee/PARMCO" 
+                <a href="#" 
                    class="inline-block bg-blue-600 text-white font-bold text-lg py-4 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1">
                     View on GitHub
                 </a>
@@ -75,27 +75,30 @@
                 
                 <div class="flex flex-col lg:flex-row items-center gap-12">
                     <!-- Text Description -->
-                    <div class="lg:w-1/2">
+                    <!-- **** CHANGED lg:w-1/2 to lg:w-1/3 **** -->
+                    <div class="lg:w-1/3">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data & Control Flow</h3>
                         <p class="text-lg text-gray-700 leading-relaxed space-y-4">
-                            The flow of control begins with the user on the **iPhone app**. When a user adjusts the speed slider or taps a direction button, the app writes data to a specific characteristic on the BLE peripheral.
+                            The flow of control begins with the user on the iPhone app. When a user adjusts the speed slider or taps a direction button, the app writes data to a specific characteristic on the BLE peripheral.
                             <br><br>
-                            The **Raspberry Pi**, acting as the peripheral, constantly listens for these BLE characteristic updates. A Python script running on the RPi receives the new data, parses it, and translates it into hardware commands.
+                            The Raspberry Pi, acting as the peripheral, constantly listens for these BLE characteristic updates. A C program running on the RPi receives the new data, parses it, and translates it into hardware commands.
                             <br><br>
-                            These commands are sent to the **L298N Motor Driver** via the RPi's GPIO pins, managing both the speed (using PWM) and direction, which in turn drives the **DC Motor**.
+                            These commands are sent to the L298N Motor Driver via the RPi's GPIO pins, managing both the speed (using PWM) and direction, which in turn drives the DC Motor.
                         </p>
                     </div>
                     
-                <!-- System Diagram -->
-                <div class="lg:w-1/2">
-                    <div class="bg-white rounded-lg shadow-xl p-6 border border-gray-200">
-                        <!-- The 'src' now points to your local image -->
-                        <img src="Motor_Schematic.png" 
-                             alt="A schematic diagram of the motor and H-bridge circuit"
-                             class="rounded-md w-full h-auto">
-                        <p class="text-center text-sm text-gray-500 mt-4">
-                            System wiring schematic
-                        </p>
+                    <!-- System Diagram -->
+                    <!-- **** CHANGED lg:w-1/2 to lg:w-2/3 **** -->
+                    <div class="lg:w-2/3">
+                        <div class="bg-white rounded-lg shadow-xl p-6 border border-gray-200">
+                            <!-- The 'src' now points to your local image -->
+                            <img src="Motor_Schematic.png" 
+                                 alt="A schematic diagram of the motor and H-bridge circuit"
+                                 class="rounded-md w-full h-auto">
+                            <p class="text-center text-sm text-gray-500 mt-4">
+                                System wiring schematic
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,16 +200,23 @@
                         CoreBluetooth
                     </span>
                     <span class="bg-green-100 text-green-800 text-lg font-medium px-5 py-2 rounded-full">
-                        C
+                        Python 3
                     </span>
-                    <span class="bg-red-100 text-red-800 text-lg font-medium px-5 py-2 rounded-full">
+                    <span class="bg-red-100 text-red-800 text-lg font-m
+edium px-5 py-2 rounded-full">
                         Raspberry Pi
                     </span>
                     <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
                         Bluetooth LE (BLE)
                     </span>
                     <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
+                        GATT
+                    </span>
+                    <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
                         RPi.GPIO
+                    </span>
+                    <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
+                        PWM
                     </span>
                 </div>
             </div>
@@ -217,7 +227,11 @@
     <footer class="bg-gray-900 text-gray-400 py-12">
         <div class="container mx-auto max-w-6xl px-6 text-center">
             <p>
-                <a href="https://github.com/blakewithee/PARMCO" class="font-medium text-blue-400 hover:text-blue-500">View this project on GitHub</a>
+                <!-- EDIT: Replace '#' with your repo link and [Your Name] with your name -->
+                <a href="#" class="font-medium text-blue-400 hover:text-blue-500">View this project on GitHub</a>
+            </p>
+            <p class="mt-4">
+                &copy; 2025 by [Your Name].
             </p>
         </div>
     </footer>
