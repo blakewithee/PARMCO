@@ -32,9 +32,11 @@
             <div class="flex items-center space-x-4">
                 <a href="#system" class="text-gray-600 hover:text-blue-600 transition duration-300">System</a>
                 <a href="#components" class="text-gray-600 hover:text-blue-600 transition duration-300">Components</a>
+                <!-- ADDED THIS LINK -->
+                <a href="#hardware-setup" class="text-gray-600 hover:text-blue-600 transition duration-300">Hardware</a>
                 <a href="#stack" class="text-gray-600 hover:text-blue-600 transition duration-300">Stack</a>
                 <!-- EDIT: Replace '#' with your actual GitHub repo link -->
-                <a href="#" 
+                <a href="https://github.com/blakewithee/PARMCO.git" 
                    class="hidden md:inline-block bg-gray-800 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-900 transition duration-300">
                    View on GitHub
                 </a>
@@ -54,7 +56,7 @@
                     An embedded system to control a Raspberry Pi-driven motor from an iPhone app via Bluetooth LE.
                 </p>
                 <!-- EDIT: Replace '#' with your actual GitHub repo link -->
-                <a href="#" 
+                <a href="https://github.com/blakewithee/PARMCO.git" 
                    class="inline-block bg-blue-600 text-white font-bold text-lg py-4 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1">
                     View on GitHub
                 </a>
@@ -83,20 +85,21 @@
                             <br><br>
                             The Raspberry Pi, acting as the peripheral, constantly listens for these BLE characteristic updates. A C program running on the RPi receives the new data, parses it, and translates it into hardware commands.
                             <br><br>
-                            These commands are sent to the L298N Motor Driver via the RPi's GPIO pins, managing both the speed (using PWM) and direction, which in turn drives the DC Motor.
+                            <!-- UPDATED L298N to L293D -->
+                            These commands are sent to the L293D Motor Driver via the RPi's GPIO pins, managing both the speed (using PWM) and direction, which in turn drives the DC Motor.
                         </p>
                     </div>
                     
                     <!-- System Diagram -->
                     <!-- **** CHANGED lg:w-1/2 to lg:w-2/3 **** -->
-                    <div class="lg:w-2/3">
+                    <div class="lg:w-1/2">
                         <div class="bg-white rounded-lg shadow-xl p-6 border border-gray-200">
                             <!-- The 'src' now points to your local image -->
                             <img src="images/system.jpg" 
                                  alt="A schematic diagram of the motor and H-bridge circuit"
                                  class="rounded-md w-full h-auto">
                             <p class="text-center text-sm text-gray-500 mt-4">
-                                System wiring schematic
+                                System Diagram
                             </p>
                         </div>
                     </div>
@@ -151,9 +154,10 @@
                         </p>
                         <ul class="list-disc list-inside space-y-2 text-gray-200">
                             <li><strong>OS:</strong> Raspberry Pi OS.</li>
-                            <li><strong>Logic:</strong> A Python 3 script.</li>
-                            <li><strong>BLE:</strong> Uses `bleak` or `bluepy` library.</li>
-                            <li><strong>Hardware:</strong> Controls GPIO pins via `RPi.GPIO`.</li>
+                            <!-- UPDATED Python to C -->
+                            <li><strong>Logic:</strong> A C program.</li>
+                            <li><strong>BLE:</strong> Uses BlueZ library (C).</li>
+                            <li><strong>Hardware:</strong> Controls GPIO pins via `pigpio` or `wiringPi`.</li>
                         </ul>
                     </div>
 
@@ -171,8 +175,9 @@
                             The physical hardware that translates digital signals into motion.
                         </p>
                         <ul class="list-disc list-inside space-y-2 text-gray-200">
-                            <li><strong>Driver:</strong> L298N H-Bridge.</li>
-                            <li><strong>Motor:</strong> Standard 5V DC Motor.</li>
+                            <!-- UPDATED L298N to L293D -->
+                            <li><strong>Driver:</strong> L293D H-Bridge.</li>
+                            <li><strong>Motor:</strong> Standard 12V DC Motor.</li>
                             <li><strong>Function:</strong> H-Bridge handles direction and power.</li>
                             <li><strong>Control:</strong> Speed managed by PWM signal.</li>
                         </ul>
@@ -182,8 +187,116 @@
             </div>
         </section>
 
+        <!-- 
+        ============================================================
+        == NEW SECTION: Hardware Setup & Operation
+        ============================================================
+        -->
+        <section id="hardware-setup" class="py-24"> <!-- Inherits bg-gray-100 from body -->
+            <div class="container mx-auto max-w-6xl px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        Hardware Setup & Operation
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        A detailed look at the circuit design, pinout, and power requirements.
+                    </p>
+                </div>
+
+                <div class="space-y-12">
+
+                    <!-- Block 1: Circuit Overview -->
+                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Circuit Operation</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed space-y-4">
+                            The circuit uses an <strong>L293D dual H-Bridge motor driver</strong> to control a 12V DC motor. This allows the Raspberry Pi to manage both the speed (via PWM to the `Enable` pin) and direction (via logic signals to `Input` pins).
+                            <br>
+                            An <strong>FC-51 IR proximity sensor</strong> is included for environmental input, such as obstacle detection. The sensor's digital `OUT` pin is fed to an RPi GPIO input.
+                            <br>
+                            An <strong>IRFZ34 N-Channel MOSFET</strong> acts as a low-side switch for an LED, which is tied to the motor's `Enable` pin to provide a visual status of when the motor is active.
+                        </p>
+                    </div>
+
+                    <!-- Block 1.5: Circuit Schematic -->
+                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
+                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Circuit Schematic</h3>
+                        <img src="images/Motor_Schematic.png" 
+                             alt="A schematic diagram of the motor and H-bridge circuit"
+                             class="rounded-md w-full h-auto border border-gray-200">
+                        <p class="text-center text-sm text-gray-500 mt-4">
+                            Circuit Schematic
+                        </p>
+                    </div>
+
+                    <!-- Block 2: Pin Assignments Table -->
+                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Raspberry Pi Pin Assignments (BCM)</h3>
+                        <div class="overflow-x-auto rounded-lg border">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-700">RP4 Pin (BCM)</th>
+                                        <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Function</th>
+                                        <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 17</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">PWM Output</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Speed control to L293D `Enable` pin</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 23</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Direction 1</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D `Input 1A`</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 24</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Direction 2</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D `Input 2A`</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 26</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">IR Sensor Input</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Reads digital output from FC-51</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">5V</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Logic Power</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Supplies 5V to L293D (VCC1) & sensor</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GND</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Ground</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Common ground for all components</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Block 3: Power & Safety -->
+                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Power & Safety</h3>
+                        <ul class="list-disc list-inside space-y-3 text-lg text-gray-700">
+                            <li>The motor is powered by an external <strong>12V DC supply</strong>.</li>
+                            <li>The L293D logic (VCC1) and IR sensor are powered by the <strong>Raspberry Pi 5V pin</strong>.</li>
+                            <li>A <strong>common ground</strong> between the RPi and the motor circuit is essential.</li>
+                            <li>The L293D provides internal flyback diodes and thermal shutdown for protection.</li>
+                            <li><strong>Note:</strong> The FC-51 IR sensor must be connected to 5V, not 12V, to prevent damage.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- ================= END NEW SECTION ================= -->
+
+
         <!-- Technology Stack -->
-        <section id="stack" class="py-24">
+        <!-- UPDATED class to maintain alternating color pattern -->
+        <section id="stack" class="bg-white py-24">
             <div class="container mx-auto max-w-4xl px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
                     Technology Stack
@@ -199,8 +312,9 @@
                     <span class="bg-blue-100 text-blue-800 text-lg font-medium px-5 py-2 rounded-full">
                         CoreBluetooth
                     </span>
+                    <!-- UPDATED Python to C -->
                     <span class="bg-green-100 text-green-800 text-lg font-medium px-5 py-2 rounded-full">
-                        Python 3
+                        C
                     </span>
                     <span class="bg-red-100 text-red-800 text-lg font-m
 edium px-5 py-2 rounded-full">
@@ -213,10 +327,7 @@ edium px-5 py-2 rounded-full">
                         GATT
                     </span>
                     <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
-                        RPi.GPIO
-                    </span>
-                    <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
-                        PWM
+                        pigpio
                     </span>
                 </div>
             </div>
@@ -228,10 +339,10 @@ edium px-5 py-2 rounded-full">
         <div class="container mx-auto max-w-6xl px-6 text-center">
             <p>
                 <!-- EDIT: Replace '#' with your repo link and [Your Name] with your name -->
-                <a href="#" class="font-medium text-blue-400 hover:text-blue-500">View this project on GitHub</a>
+                <a href="https://github.com/blakewithee/PARMCO.git" class="font-medium text-blue-400 hover:text-blue-500">View this project on GitHub</a>
             </p>
             <p class="mt-4">
-                &copy; 2025 by [Your Name].
+                &copy; 2025 by Blake Withee and Gaelen Collins.
             </p>
         </div>
     </footer>
