@@ -180,9 +180,9 @@
                         <p class="text-lg text-gray-700 leading-relaxed space-y-4">
                             The circuit uses an <strong>L293D dual H-Bridge motor driver</strong> to control a 12V DC motor. This allows the Raspberry Pi to manage both the speed (via PWM to the `Enable` pin) and direction (via logic signals to `Input` pins).
                             <br>
-                            An <strong>FC-51 IR proximity sensor</strong> is included for environmental input, such as obstacle detection. The sensor's digital `OUT` pin is fed to an RPi GPIO input.
+                            An <strong>FC-51 IR proximity sensor</strong> is included to track RPM data from the motor. The sensor's digital `OUT` pin is fed to an RPi GPIO input.
                             <br>
-                            An <strong>IRFZ34 N-Channel MOSFET</strong> acts as a low-side switch for an LED, which is tied to the motor's `Enable` pin to provide a visual status of when the motor is active.
+                            An <strong>IRFZ34 N-Channel MOSFET</strong> acts as a low-side switch for an LED, which is tied to the motor's `Enable` pin and an LED to provide a visual status of when the motor is active.
                         </p>
                     </div>
 
