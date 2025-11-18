@@ -682,86 +682,72 @@
                     </h3>
                     
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
                             <div class="flex items-start justify-between mb-4">
                                 <h4 class="text-xl font-bold text-gray-800">BlueZ</h4>
-                                <span class="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">BLE Stack</span>
+                                <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Bluetooth Stack</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Official Linux Bluetooth protocol stack providing complete BLE peripheral capabilities.
+                                The official Linux Bluetooth protocol stack. The system interacts directly with the BlueZ daemon to manage BLE connections.
                             </p>
-                            <div class="bg-red-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-red-700">Why we used it:</strong> De facto standard for Bluetooth on Linux systems. Enables RPi to act as BLE peripheral. Robust C API for GATT service and characteristic creation. Mature and well-documented.</p>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-blue-700">Code Usage:</strong> 
+                                    Accessed via GDBus to register the GATT application and handle D-Bus method calls like <code class="bg-blue-100 px-1 rounded">WriteValue</code> for incoming iPhone commands.
+                                </p>
                             </div>
                         </div>
 
                         <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-indigo-500">
                             <div class="flex items-start justify-between mb-4">
                                 <h4 class="text-xl font-bold text-gray-800">pigpio</h4>
-                                <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">GPIO Library</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">Hardware Control</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                High-performance C library for Raspberry Pi GPIO control with precise timing and PWM support.
+                                The core hardware interface library used for controlling GPIO pins with high precision.
                             </p>
                             <div class="bg-indigo-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-indigo-700">Why we used it:</strong> Hardware-timed PWM crucial for smooth motor speed control. Microsecond-level precision for accurate timing. Efficient interrupt handling for IR sensor. Better performance than RPi.GPIO.</p>
-                            </div>
-                        </div>
-
-                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-cyan-500">
-                            <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">GLib</h4>
-                                <span class="bg-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full">Core Library</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Low-level core library providing data structures, event loops, and utility functions for C programs.
-                            </p>
-                            <div class="bg-cyan-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-cyan-700">Why we used it:</strong> Required by BlueZ for event loop management. Provides efficient main loop for handling BLE events asynchronously. Essential for non-blocking I/O operations.</p>
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-indigo-700">Code Usage:</strong> 
+                                    Generates hardware-timed PWM for motor speed and uses <code class="bg-indigo-100 px-1 rounded">gpioTick()</code> to capture microsecond-precise timestamps for RPM calculations.
+                                </p>
                             </div>
                         </div>
 
                         <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-pink-500">
                             <div class="flex items-start justify-between mb-4">
                                 <h4 class="text-xl font-bold text-gray-800">pthread</h4>
-                                <span class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full">Threading</span>
+                                <span class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full">Concurrency</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                POSIX threads library for creating and managing concurrent execution threads in C programs.
+                                POSIX threading library used to run critical monitoring tasks in parallel with the main control loop.
                             </p>
                             <div class="bg-pink-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-pink-700">Why we used it:</strong> Separates BLE communication from motor control logic. Prevents blocking operations from interfering with real-time motor response. Enables concurrent RPM monitoring from IR sensor.</p>
-                            </div>
-                        </div>
-
-                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
-                            <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">stdio / stdlib</h4>
-                                <span class="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Standard C</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Standard C libraries for input/output operations, memory management, and core utilities.
-                            </p>
-                            <div class="bg-yellow-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-yellow-700">Why we used it:</strong> Essential for debugging with printf statements. Memory allocation for data structures. String manipulation for parsing BLE data. File operations for logging.</p>
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-pink-700">Code Usage:</strong> 
+                                    Runs the RPM sensor monitoring in a separate thread to catch every blade pulse, using <code class="bg-pink-100 px-1 rounded">pthread_mutex</code> to safely update shared data.
+                                </p>
                             </div>
                         </div>
 
                         <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-teal-500">
                             <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">math.h</h4>
-                                <span class="bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full">Mathematics</span>
+                                <h4 class="text-xl font-bold text-gray-800">IPC (Named Pipes)</h4>
+                                <span class="bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full">Inter-Process</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Standard C math library providing mathematical functions and constants for calculations.
+                                Standard C library functions used to create a bridge between the BLE Server and Motor Control processes.
                             </p>
                             <div class="bg-teal-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-teal-700">Why we used it:</strong> RPM calculations from IR sensor pulse timing. Speed conversions between percentage and PWM duty cycle. Sensor data smoothing and filtering algorithms.</p>
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-teal-700">Code Usage:</strong> 
+                                    Uses <code class="bg-teal-100 px-1 rounded">mkfifo</code> to create <code class="text-xs">/tmp/motor_pipe</code>, allowing the BLE service to send commands to the motor controller asynchronously.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Technology Stack Tags -->
                 <div class="mt-16 text-center">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6">Complete Technology Stack</h3>
