@@ -140,70 +140,55 @@
                         Project Demonstrations
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Watch how seamlessly the iOS app controls the motor through Bluetooth connectivity
+                        From hardware assembly to full wireless control
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <!-- Demo Video 1 -->
-                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🎮 Manual Motor Control Mode</h3>
-                        <div class="video-container mb-4">
-                            <!-- Replace with actual video URL -->
-                            <video controls poster="images/manual-mode-thumbnail.jpg">
-                                <source src="videos/manual-mode-demo.mp4" type="video/mp4">
+                <div class="grid md:grid-cols-2 gap-12 mb-12">
+                    
+                    <div class="card-hover bg-gray-50 rounded-2xl p-8 shadow-xl border border-gray-100 flex flex-col">
+                        <div class="mb-6">
+                            <div class="inline-block p-3 bg-blue-100 rounded-full text-blue-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-800 mb-2">🔧 System Setup</h3>
+                            <p class="text-gray-600">
+                                A walkthrough of the hardware assembly, wiring the L293D driver, connecting the IR sensor, and initializing the C-based BLE server.
+                            </p>
+                        </div>
+                        
+                        <div class="video-container shadow-lg rounded-xl overflow-hidden mt-auto">
+                            <video controls poster="images/setup-thumbnail.jpg" class="w-full">
+                                <source src="videos/system-setup.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <p class="text-gray-600">
-                            Direct control of motor speed and direction through intuitive slider and button controls in the iOS app.
-                        </p>
                     </div>
 
-                    <!-- Demo Video 2 -->
-                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🤖 Automatic Motor Control Mode</h3>
-                        <div class="video-container mb-4">
-                            <!-- Replace with actual video URL -->
-                            <video controls poster="images/auto-mode-thumbnail.jpg">
-                                <source src="videos/auto-mode-demo.mp4" type="video/mp4">
+                    <div class="card-hover bg-gray-50 rounded-2xl p-8 shadow-xl border border-gray-100 flex flex-col">
+                        <div class="mb-6">
+                            <div class="inline-block p-3 bg-purple-100 rounded-full text-purple-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-800 mb-2">📱 iOS App & Motor Control</h3>
+                            <p class="text-gray-600">
+                                The full integrated experience. Demonstrating Bluetooth pairing, manual speed/direction control, and automatic RPM regulation via PID.
+                            </p>
+                        </div>
+
+                        <div class="video-container shadow-lg rounded-xl overflow-hidden mt-auto">
+                            <video controls poster="images/demo-thumbnail.jpg" class="w-full">
+                                <source src="videos/app-motor-demo.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <p class="text-gray-600">
-                            Watch the motor execute pre-programmed sequences and automated routines with precision timing and control.
-                        </p>
                     </div>
 
-                    <!-- Demo Video 3 -->
-                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🎯 Game Mode</h3>
-                        <div class="video-container mb-4">
-                            <!-- Replace with actual video URL -->
-                            <video controls poster="images/game-mode-thumbnail.jpg">
-                                <source src="videos/game-mode-demo.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <p class="text-gray-600">
-                            Interactive game mode demonstration featuring challenge-based motor control and real-time feedback.
-                        </p>
-                    </div>
-
-                    <!-- Demo Video 4 -->
-                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🔧 System Setup</h3>
-                        <div class="video-container mb-4">
-                            <!-- Replace with actual video URL -->
-                            <video controls poster="images/setup-thumbnail.jpg">
-                                <source src="videos/system-setup-demo.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <p class="text-gray-600">
-                            Complete walkthrough of hardware assembly, wiring, and software configuration from start to finish.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>
