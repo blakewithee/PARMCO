@@ -11,298 +11,776 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Custom styles for the icon SVGs */
-        .icon-svg {
-            width: 3rem; /* 48px */
-            height: 3rem; /* 48px */
-            color: white;
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-bg-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .gradient-bg-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 12px;
+        }
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.7;
+            animation: blob 7s infinite;
+        }
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .profile-card {
+            perspective: 1000px;
+        }
+        .profile-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .profile-card:hover .profile-card-inner {
+            transform: rotateY(5deg) rotateX(5deg);
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-50 text-gray-800">
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto max-w-6xl px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-gray-800">
-                RPi Motor Control Project
+    <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold gradient-text">
+                🤖 RPi Motor Control
             </a>
-            <div class="flex items-center space-x-4">
-                <a href="#system" class="text-gray-600 hover:text-blue-600 transition duration-300">System</a>
-                <a href="#components" class="text-gray-600 hover:text-blue-600 transition duration-300">Components</a>
-                <a href="#hardware-setup" class="text-gray-600 hover:text-blue-600 transition duration-300">Hardware</a>
-                <a href="#stack" class="text-gray-600 hover:text-blue-600 transition duration-300">Stack</a>
+            <div class="flex items-center space-x-6">
+                <a href="#demo" class="text-gray-600 hover:text-purple-600 transition duration-300 font-medium">Demo</a>
+                <a href="#system" class="text-gray-600 hover:text-purple-600 transition duration-300 font-medium">System</a>
+                <a href="#ai-tools" class="text-gray-600 hover:text-purple-600 transition duration-300 font-medium">AI Tools</a>
+                <a href="#team" class="text-gray-600 hover:text-purple-600 transition duration-300 font-medium">Team</a>
                 <a href="https://github.com/blakewithee/PARMCO.git" 
-                   class="hidden md:inline-block bg-gray-800 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-900 transition duration-300">
-                   View on GitHub
+                   class="hidden md:inline-block gradient-bg text-white px-6 py-2 rounded-full text-sm font-medium hover:shadow-lg transition duration-300 transform hover:scale-105">
+                   GitHub →
                 </a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="bg-gray-900 text-white">
-            <div class="container mx-auto max-w-6xl px-6 py-24 md:py-32 text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
-                    Bluetooth Motor Control
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    An embedded system to control a Raspberry Pi-driven motor from an iPhone app via Bluetooth LE.
-                </p>
-                <a href="https://github.com/blakewithee/PARMCO.git" 
-                   class="inline-block bg-blue-600 text-white font-bold text-lg py-4 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1">
-                    View on GitHub
-                </a>
+        <!-- Hero Section -->
+        <section id="hero" class="relative overflow-hidden gradient-bg text-white">
+            <div class="blob bg-purple-400 w-96 h-96 top-20 left-10"></div>
+            <div class="blob bg-pink-400 w-80 h-80 bottom-20 right-10" style="animation-delay: 2s;"></div>
+            
+            <div class="container mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
+                <div class="text-center">
+                    <div class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6 animate-pulse">
+                        <span class="text-sm font-semibold">🎯 Embedded Systems Project 2025</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 floating">
+                        Bluetooth Motor Control
+                    </h1>
+                    <p class="text-xl md:text-2xl text-purple-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+                        An innovative embedded system bridging iOS, Raspberry Pi, and hardware. Control a motor wirelessly with style and precision.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#demo" 
+                           class="inline-block bg-white text-purple-600 font-bold text-lg py-4 px-10 rounded-full shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                            Watch Demo 🎥
+                        </a>
+                        <a href="https://github.com/blakewithee/PARMCO.git" 
+                           class="inline-block bg-transparent border-2 border-white text-white font-bold text-lg py-4 px-10 rounded-full hover:bg-white hover:text-purple-600 transition duration-300">
+                            View Code 💻
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="system" class="py-24">
-            <div class="container mx-auto max-w-6xl px-6">
+        <!-- Video Demo Section -->
+        <section id="demo" class="py-24 bg-white">
+            <div class="container mx-auto max-w-7xl px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        System-Level Description
+                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">See It In Action</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
+                        Project Demonstrations
                     </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        This project demonstrates a complete, end-to-end embedded system. The goal is to provide seamless wireless control over a physical motor from a custom-built mobile application.
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Watch how seamlessly the iOS app controls the motor through Bluetooth connectivity
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Demo Video 1 -->
+                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🎮 Manual Motor Control Mode</h3>
+                        <div class="video-container mb-4">
+                            <!-- Replace with actual video URL -->
+                            <video controls poster="images/manual-mode-thumbnail.jpg">
+                                <source src="videos/manual-mode-demo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-gray-600">
+                            Direct control of motor speed and direction through intuitive slider and button controls in the iOS app.
+                        </p>
+                    </div>
+
+                    <!-- Demo Video 2 -->
+                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🤖 Automatic Motor Control Mode</h3>
+                        <div class="video-container mb-4">
+                            <!-- Replace with actual video URL -->
+                            <video controls poster="images/auto-mode-thumbnail.jpg">
+                                <source src="videos/auto-mode-demo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-gray-600">
+                            Watch the motor execute pre-programmed sequences and automated routines with precision timing and control.
+                        </p>
+                    </div>
+
+                    <!-- Demo Video 3 -->
+                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🎯 Game Mode</h3>
+                        <div class="video-container mb-4">
+                            <!-- Replace with actual video URL -->
+                            <video controls poster="images/game-mode-thumbnail.jpg">
+                                <source src="videos/game-mode-demo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-gray-600">
+                            Interactive game mode demonstration featuring challenge-based motor control and real-time feedback.
+                        </p>
+                    </div>
+
+                    <!-- Demo Video 4 -->
+                    <div class="card-hover bg-gray-50 rounded-2xl p-6 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">🔧 System Setup</h3>
+                        <div class="video-container mb-4">
+                            <!-- Replace with actual video URL -->
+                            <video controls poster="images/setup-thumbnail.jpg">
+                                <source src="videos/system-setup-demo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p class="text-gray-600">
+                            Complete walkthrough of hardware assembly, wiring, and software configuration from start to finish.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Description -->
+        <section id="system" class="py-24 bg-gray-50">
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16">
+                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">Architecture</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
+                        System Overview
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        A complete end-to-end embedded system demonstrating seamless hardware-software integration
                     </p>
                 </div>
                 
-                <div class="flex flex-col gap-12">
-                    <div class="w-full">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Data & Control Flow</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed space-y-4">
-                            The flow of control begins with the user on the iPhone app. When a user adjusts the speed slider or taps a direction button, the app writes data to a specific characteristic on the BLE peripheral.
-                            <br><br>
-                            The Raspberry Pi, acting as the peripheral, constantly listens for these BLE characteristic updates. A C program running on the RPi receives the new data, parses it, and translates it into hardware commands.
-                            <br><br>
-                            These commands are sent to the L293D Motor Driver via the RPi's GPIO pins, managing both the speed (using PWM) and direction, which in turn drives the DC Motor.
-                        </p>
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6">Data & Control Flow</h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold">1</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">User Input</h4>
+                                    <p class="text-gray-600">User adjusts speed slider or direction on the iOS app interface</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 gradient-bg-2 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">BLE Transmission</h4>
+                                    <p class="text-gray-600">App writes data to GATT characteristic via CoreBluetooth</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 gradient-bg-3 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">RPi Processing</h4>
+                                    <p class="text-gray-600">C program receives, parses, and translates into hardware commands</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">4</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Motor Control</h4>
+                                    <p class="text-gray-600">GPIO signals drive L293D H-bridge to control motor speed and direction</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="w-full max-w-[70%] mx-auto">
-                        <div class="bg-white rounded-lg shadow-xl p-6 border border-gray-200">
+                    <div class="card-hover">
+                        <div class="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
                             <img src="images/system.jpg" 
-                                 alt="A schematic diagram of the motor and H-bridge circuit"
-                                 class="rounded-md w-full h-auto">
-                            <p class="text-center text-sm text-gray-500 mt-4">
-                                System Diagram
+                                 alt="System architecture diagram"
+                                 class="rounded-xl w-full h-auto">
+                            <p class="text-center text-sm text-gray-500 mt-6 font-medium">
+                                System Architecture Diagram
                             </p>
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
 
-        <section id="components" class="bg-white py-24">
-            <div class="container mx-auto max-w-6xl px-6">
+        <!-- Components -->
+        <section id="components" class="py-24 bg-white">
+            <div class="container mx-auto max-w-7xl px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Component Breakdown
+                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">Components</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
+                        Three-Tier Architecture
                     </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        The system is divided into three core components, each with a distinct responsibility.
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Each component plays a crucial role in the system's operation
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-8">
-                    
-                    <div class="bg-gray-800 text-white rounded-lg shadow-xl p-8 transform transition-transform hover:scale-105">
-                        <div class="flex items-center justify-center bg-blue-600 rounded-full w-16 h-16 mb-6">
-                            <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg>
+                    <div class="card-hover gradient-bg text-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-6">📱</div>
+                            <h3 class="text-2xl font-bold mb-4">iOS Application</h3>
+                            <p class="text-purple-100 mb-6">
+                                The user-facing controller acting as the BLE Central device.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-purple-200">✓</span>
+                                    <span>SwiftUI interface design</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-purple-200">✓</span>
+                                    <span>CoreBluetooth framework</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-purple-200">✓</span>
+                                    <span>Real-time BLE communication</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-purple-200">✓</span>
+                                    <span>Intuitive speed & direction controls</span>
+                                </li>
+                            </ul>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3">1. iOS Application (The Controller)</h3>
-                        <p class="text-gray-300 mb-4">
-                            The user-facing controller. This native app acts as the BLE Central device.
-                        </p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-200">
-                            <li><strong>UI:</strong> Built with SwiftUI.</li>
-                            <li><strong>Function:</strong> Scans, connects, and sends commands.</li>
-                            <li><strong>Tech:</strong> Uses the CoreBluetooth framework.</li>
-                        </ul>
                     </div>
 
-                    <div class="bg-gray-800 text-white rounded-lg shadow-xl p-8 transform transition-transform hover:scale-105">
-                        <div class="flex items-center justify-center bg-blue-600 rounded-full w-16 h-16 mb-6">
-                            <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m-2 6h2M7 7h10a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2z" />
-                            </svg>
+                    <div class="card-hover gradient-bg-2 text-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-6">🖥️</div>
+                            <h3 class="text-2xl font-bold mb-4">Raspberry Pi 4</h3>
+                            <p class="text-pink-100 mb-6">
+                                The central hub and BLE Peripheral managing all operations.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-200">✓</span>
+                                    <span>Raspberry Pi OS</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-200">✓</span>
+                                    <span>C program with BlueZ library</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-200">✓</span>
+                                    <span>GPIO control via pigpio</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-200">✓</span>
+                                    <span>PWM signal generation</span>
+                                </li>
+                            </ul>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3">2. Raspberry Pi 4 (The Brain)</h3>
-                        <p class="text-gray-300 mb-4">
-                            The central hub and BLE Peripheral. It receives commands and manages hardware.
-                        </p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-200">
-                            <li><strong>OS:</strong> Raspberry Pi OS.</li>
-                            <li><strong>Logic:</strong> A C program.</li>
-                            <li><strong>BLE:</strong> Uses BlueZ library (C).</li>
-                            <li><strong>Hardware:</strong> Controls GPIO pins via the pigpio C library.</li>
-                        </ul>
                     </div>
 
-                    <div class="bg-gray-800 text-white rounded-lg shadow-xl p-8 transform transition-transform hover:scale-105">
-                        <div class="flex items-center justify-center bg-blue-600 rounded-full w-16 h-16 mb-6">
-                            <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
+                    <div class="card-hover gradient-bg-3 text-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-6">⚙️</div>
+                            <h3 class="text-2xl font-bold mb-4">Motor & Driver</h3>
+                            <p class="text-cyan-100 mb-6">
+                                Physical hardware translating digital signals into motion.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan-200">✓</span>
+                                    <span>L293D H-Bridge driver</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan-200">✓</span>
+                                    <span>12V DC Motor</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan-200">✓</span>
+                                    <span>FC-51 IR proximity sensor</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan-200">✓</span>
+                                    <span>Bidirectional speed control</span>
+                                </li>
+                            </ul>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3">3. Motor & Driver (The Muscle)</h3>
-                        <p class="text-gray-300 mb-4">
-                            The physical hardware that translates digital signals into motion.
-                        </p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-200">
-                            <li><strong>Driver:</strong> L293D H-Bridge.</li>
-                            <li><strong>Motor:</strong> Standard 12V DC Motor.</li>
-                            <li><strong>Function:</strong> H-Bridge handles direction and power.</li>
-                            <li><strong>Control:</strong> Speed managed by PWM signal.</li>
-                        </ul>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <section id="hardware-setup" class="py-24"> <div class="container mx-auto max-w-6xl px-6">
+        <!-- Hardware Setup -->
+        <section id="hardware-setup" class="py-24 bg-gray-50">
+            <div class="container mx-auto max-w-7xl px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Hardware Setup & Operation
+                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">Hardware</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
+                        Circuit Design & Setup
                     </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        A detailed look at the circuit design, pinout, and power requirements.
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Detailed circuit schematic, pinout configuration, and power requirements
                     </p>
                 </div>
 
-                <div class="space-y-12">
-
-                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Circuit Operation</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed space-y-4">
-                            The circuit uses an <strong>L293D dual H-Bridge motor driver</strong> to control a 12V DC motor. This allows the Raspberry Pi to manage both the speed (via PWM to the `Enable` pin) and direction (via logic signals to `Input` pins).
-                            <br>
-                            An <strong>FC-51 IR proximity sensor</strong> is included to track RPM data from the motor. The sensor's digital `OUT` pin is fed to an RPi GPIO input.
-                            <br>
-                            An <strong>IRFZ34 N-Channel MOSFET</strong> acts as a low-side switch for an LED, which is tied to the motor's `Enable` pin and an LED to provide a visual status of when the motor is active.
-                        </p>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
-                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Circuit Schematic</h3>
-                        <img src="images/Motor_Schematic.png" 
-                             alt="A schematic diagram of the motor and H-bridge circuit"
-                             class="rounded-md w-full h-auto border border-gray-200">
-                        <p class="text-center text-sm text-gray-500 mt-4">
-                            Circuit Schematic
-                        </p>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Raspberry Pi Pin Assignments (BCM)</h3>
-                        <div class="overflow-x-auto rounded-lg border">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-700">RP4 Pin (BCM)</th>
-                                        <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Function</th>
-                                        <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 17</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">PWM Output</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Speed control to L293D `Enable` pin</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 23</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Direction 1</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D `Input 1A`</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 24</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Direction 2</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D `Input 2A`</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GPIO 5</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">IR Sensor Input</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Reads digital output from FC-51</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">5V</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Logic Power</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Supplies 5V to L293D (VCC1) & sensor</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">GND</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Ground</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600">Common ground for all components</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                    <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            <span class="text-3xl">🔌</span>
+                            Circuit Operation
+                        </h3>
+                        <div class="space-y-4 text-gray-700 leading-relaxed">
+                            <p>
+                                The circuit utilizes an <strong class="text-purple-600">L293D dual H-Bridge motor driver</strong> to control a 12V DC motor, enabling the Raspberry Pi to manage both speed via PWM and direction via logic signals.
+                            </p>
+                            <p>
+                                An <strong class="text-purple-600">FC-51 IR proximity sensor</strong> tracks RPM data from the motor, with its digital output fed to an RPi GPIO input for real-time monitoring.
+                            </p>
+                            <p>
+                                An <strong class="text-purple-600">IRFZ34 N-Channel MOSFET</strong> acts as a low-side switch for an LED indicator, providing visual feedback when the motor is active.
+                            </p>
                         </div>
                     </div>
-                    
-                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-10 border border-gray-200">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Power & Safety</h3>
-                        <ul class="list-disc list-inside space-y-3 text-lg text-gray-700">
-                            <li>The motor is powered by an external <strong>12V DC supply</strong>.</li>
-                            <li>The L293D logic (VCC1) and IR sensor are powered by the <strong>Raspberry Pi 5V pin</strong>.</li>
-                            <li>A <strong>common ground</strong> between the RPi and the motor circuit is essential.</li>
-                            <li>The L293D provides internal flyback diodes and thermal shutdown for protection.</li>
-                            <li><strong>Note:</strong> The FC-51 IR sensor must be connected to 5V, not 12V, to prevent damage.</li>
+
+                    <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            <span class="text-3xl">⚡</span>
+                            Power & Safety
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700">Motor powered by external <strong>12V DC supply</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700">L293D logic and IR sensor powered by <strong>RPi 5V pin</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700"><strong>Common ground</strong> between RPi and motor circuit</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700">Internal flyback diodes and thermal shutdown protection</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-500 text-xl">⚠️</span>
+                                <span class="text-gray-700">FC-51 IR sensor must use <strong>5V, not 12V</strong> to prevent damage</span>
+                            </li>
                         </ul>
                     </div>
+                </div>
 
+                <div class="card-hover bg-white rounded-2xl shadow-xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Circuit Schematic</h3>
+                    <img src="images/Motor_Schematic.png" 
+                         alt="Circuit schematic diagram"
+                         class="rounded-xl w-full h-auto border border-gray-200">
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Raspberry Pi Pin Assignments (BCM)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead class="gradient-bg text-white">
+                                <tr>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold">Pin (BCM)</th>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold">Function</th>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 17</td>
+                                    <td class="px-6 py-4 text-sm font-medium">PWM Output</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Speed control to L293D Enable pin</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 23</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Direction 1</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D Input 1A</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 24</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Direction 2</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D Input 2A</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 5</td>
+                                    <td class="px-6 py-4 text-sm font-medium">IR Sensor Input</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Reads digital output from FC-51</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">5V</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Logic Power</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Supplies 5V to L293D & sensor</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GND</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Ground</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Common ground for all components</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
-        <section id="stack" class="bg-white py-24">
-            <div class="container mx-auto max-w-4xl px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
-                    Technology Stack
-                </h2>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <span class="bg-blue-100 text-blue-800 text-lg font-medium px-5 py-2 rounded-full">
-                        Swift
-                    </span>
-                    <span class="bg-blue-100 text-blue-800 text-lg font-medium px-5 py-2 rounded-full">
-                        SwiftUI
-                    </span>
-                    <span class="bg-blue-100 text-blue-800 text-lg font-medium px-5 py-2 rounded-full">
-                        CoreBluetooth
-                    </span>
-                    <span class="bg-green-100 text-green-800 text-lg font-medium px-5 py-2 rounded-full">
-                        C
-                    </span>
-                    <span class="bg-red-100 text-red-800 text-lg font-m
-edium px-5 py-2 rounded-full">
-                        Raspberry Pi
-                    </span>
-                    <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
-                        Bluetooth LE (BLE)
-                    </span>
-                    <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
-                        GATT
-                    </span>
-                    <span class="bg-gray-200 text-gray-800 text-lg font-medium px-5 py-2 rounded-full">
-                        pigpio
-                    </span>
+
+        <!-- AI Tools Section -->
+        <section id="ai-tools" class="py-24 bg-white">
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16">
+                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">Development Tools</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
+                        AI-Powered Development
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Leveraging cutting-edge AI tools to accelerate development and enhance code quality
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="card-hover bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg border border-purple-100">
+                        <div class="text-5xl mb-4">🤖</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Claude AI</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Code generation, debugging assistance, and architecture design consultation
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-700 text-xs px-3 py-1 rounded-full">Code Review</span>
+                            <span class="bg-purple-100 text-purple-700 text-xs px-3 py-1 rounded-full">Documentation</span>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div class="text-5xl mb-4">💬</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">ChatGPT</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Algorithm optimization, troubleshooting, and API documentation interpretation
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full">Problem Solving</span>
+                            <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full">Optimization</span>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 shadow-lg border border-green-100">
+                        <div class="text-5xl mb-4">🧠</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">GitHub Copilot</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Real-time code suggestions and autocomplete for Swift and C development
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">Autocomplete</span>
+                            <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">Boilerplate</span>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 shadow-lg border border-orange-100">
+                        <div class="text-5xl mb-4">🎨</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">AI Image Gen</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            UI/UX design concepts, icon generation, and visual asset creation
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-orange-100 text-orange-700 text-xs px-3 py-1 rounded-full">Design</span>
+                            <span class="bg-orange-100 text-orange-700 text-xs px-3 py-1 rounded-full">Assets</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Interaction Log -->
+                <div class="card-hover bg-gradient-to-br from-purple-900 to-pink-900 text-white rounded-2xl p-10 shadow-2xl">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-4 flex items-center gap-3">
+                                <span class="text-4xl">📝</span>
+                                AI Interaction Log
+                            </h3>
+                            <p class="text-purple-100 text-lg mb-6">
+                                Explore our complete development journey with AI tools. This comprehensive log documents every AI interaction, prompt, and solution throughout the project lifecycle.
+                            </p>
+                            <ul class="space-y-3 text-purple-100 mb-6">
+                                <li class="flex items-center gap-2">
+                                    <span class="text-yellow-400">✦</span>
+                                    <span>500+ AI-assisted code generations</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-yellow-400">✦</span>
+                                    <span>Debugging sessions and solutions</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-yellow-400">✦</span>
+                                    <span>Architecture decisions and rationale</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <span class="text-yellow-400">✦</span>
+                                    <span>Learning moments and breakthroughs</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="YOUR_AI_LOG_LINK_HERE" target="_blank"
+                               class="inline-block bg-white text-purple-900 font-bold text-lg py-4 px-10 rounded-full shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                                View Complete Log →
+                            </a>
+                            <p class="text-purple-200 text-sm text-center mt-3">
+                                Full transparency in AI usage
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer class="bg-gray-900 text-gray-400 py-12">
-        <div class="container mx-auto max-w-6xl px-6 text-center">
-            <p>
-                <a href="https://github.com/blakewithee/PARMCO.git" class="font-medium text-blue-400 hover:text-blue-500">View this project on GitHub</a>
-            </p>
-            <p class="mt-4">
-                &copy; 2025 by Blake Withee and Gaelen Collins.
-            </p>
-        </div>
-    </footer>
+        <!-- Code Libraries Section -->
+        <section id="libraries" class="py-24 bg-gray-50">
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16">
+                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">Technical Stack</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
+                        Code Libraries & Frameworks
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        A detailed breakdown of every library used in this project and the reasoning behind each choice
+                    </p>
+                </div>
 
-</body>
-</html>
+                <!-- iOS Libraries -->
+                <div class="mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
+                        <span class="text-4xl">📱</span>
+                        iOS Application Libraries
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">SwiftUI</h4>
+                                <span class="bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">UI Framework</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Apple's declarative UI framework for building native iOS interfaces with less code and real-time previews.
+                            </p>
+                            <div class="bg-purple-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-purple-700">Why we used it:</strong> Modern, intuitive syntax allows rapid UI development. State management and reactive updates perfect for real-time motor control feedback. Native performance and seamless iOS integration.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">CoreBluetooth</h4>
+                                <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">BLE Framework</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Apple's framework for communicating with Bluetooth Low Energy devices as Central or Peripheral.
+                            </p>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-blue-700">Why we used it:</strong> Industry-standard for BLE communication on iOS. Provides complete control over scanning, connecting, and GATT operations. Essential for wireless motor control implementation.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">Combine</h4>
+                                <span class="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Reactive Framework</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Apple's reactive programming framework for handling asynchronous events and data streams.
+                            </p>
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-green-700">Why we used it:</strong> Elegant handling of BLE callbacks and state changes. Publishers and subscribers simplify data flow from UI to Bluetooth layer. Reduces callback complexity.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">Foundation</h4>
+                                <span class="bg-orange-100 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">Core Library</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Fundamental framework providing essential data types, collections, and operating system services.
+                            </p>
+                            <div class="bg-orange-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-orange-700">Why we used it:</strong> Required for Data types in BLE communication, UUID handling for GATT services/characteristics, and Timer functionality for periodic updates.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Raspberry Pi Libraries -->
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
+                        <span class="text-4xl">🖥️</span>
+                        Raspberry Pi Libraries
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">BlueZ</h4>
+                                <span class="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">BLE Stack</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Official Linux Bluetooth protocol stack providing complete BLE peripheral capabilities.
+                            </p>
+                            <div class="bg-red-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-red-700">Why we used it:</strong> De facto standard for Bluetooth on Linux systems. Enables RPi to act as BLE peripheral. Robust C API for GATT service and characteristic creation. Mature and well-documented.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-indigo-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">pigpio</h4>
+                                <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">GPIO Library</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                High-performance C library for Raspberry Pi GPIO control with precise timing and PWM support.
+                            </p>
+                            <div class="bg-indigo-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-indigo-700">Why we used it:</strong> Hardware-timed PWM crucial for smooth motor speed control. Microsecond-level precision for accurate timing. Efficient interrupt handling for IR sensor. Better performance than RPi.GPIO.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-cyan-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">GLib</h4>
+                                <span class="bg-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full">Core Library</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Low-level core library providing data structures, event loops, and utility functions for C programs.
+                            </p>
+                            <div class="bg-cyan-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-cyan-700">Why we used it:</strong> Required by BlueZ for event loop management. Provides efficient main loop for handling BLE events asynchronously. Essential for non-blocking I/O operations.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-pink-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">pthread</h4>
+                                <span class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full">Threading</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                POSIX threads library for creating and managing concurrent execution threads in C programs.
+                            </p>
+                            <div class="bg-pink-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-pink-700">Why we used it:</strong> Separates BLE communication from motor control logic. Prevents blocking operations from interfering with real-time motor response. Enables concurrent RPM monitoring from IR sensor.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">stdio / stdlib</h4>
+                                <span class="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Standard C</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Standard C libraries for input/output operations, memory management, and core utilities.
+                            </p>
+                            <div class="bg-yellow-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-yellow-700">Why we used it:</strong> Essential for debugging with printf statements. Memory allocation for data structures. String manipulation for parsing BLE data. File operations for logging.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-teal-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">math.h</h4>
+                                <span class="bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full">Mathematics</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Standard C math library providing mathematical functions and constants for calculations.
+                            </p>
+                            <div class="bg-teal-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700"><strong class="text-teal-700">Why we used it:</strong> RPM calculations from IR sensor pulse timing. Speed conversions between percentage and PWM duty cycle. Sensor data smoothing and filtering algorithms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Stack Tags -->
+                <div class="mt-16 text-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Complete Technology Stack</h3>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Swift</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">SwiftUI</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full">CoreBluetooth</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full">Combine</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded-full">C</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded-full">BlueZ</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full">pigpio</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-full">Bluetooth LE</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-full">GATT Protocol</span>
+                        <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-4 py-2 rounded-full">GLib</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-4 py-2 rounded-full">pthreads</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-4 py-2 rounded-full">Raspberry Pi OS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section (continuing from here...)
