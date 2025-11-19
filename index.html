@@ -376,122 +376,155 @@
 
         <!-- Hardware Setup -->
         <section id="hardware-setup" class="py-24 bg-gray-50">
-            <div class="container mx-auto max-w-7xl px-6">
-                <div class="text-center mb-16">
-                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">Hardware</span>
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
-                        Circuit Design & Setup
-                    </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Detailed circuit schematic, pinout configuration, and power requirements
-                    </p>
-                </div>
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16">
+                    <span class="text-purple-600 font-semibold text-sm uppercase tracking-wide">Hardware</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 mt-2">
+                        Circuit Design & Setup
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Detailed circuit schematic, pinout configuration, and power requirements
+                    </p>
+                </div>
 
-                <div class="grid lg:grid-cols-2 gap-8 mb-12">
-                    <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <span class="text-3xl">🔌</span>
-                            Circuit Operation
-                        </h3>
-                        <div class="space-y-4 text-gray-700 leading-relaxed">
-                            <p>
-                                The circuit utilizes an <strong class="text-purple-600">L293D dual H-Bridge motor driver</strong> to control a 12V DC motor, enabling the Raspberry Pi to manage both speed via PWM and direction via logic signals.
-                            </p>
-                            <p>
-                                An <strong class="text-purple-600">FC-51 IR proximity sensor</strong> tracks RPM data from the motor, with its digital output fed to an RPi GPIO input for real-time monitoring.
-                            </p>
-                            <p>
-                                An <strong class="text-purple-600">IRFZ34 N-Channel MOSFET</strong> acts as a low-side switch for an LED indicator, providing visual feedback when the motor is active.
-                            </p>
-                        </div>
-                    </div>
+                <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                    <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            <span class="text-3xl">🔌</span>
+                            Circuit Operation
+                        </h3>
+                        <div class="space-y-4 text-gray-700 leading-relaxed">
+                            <p>
+                                The circuit utilizes an <strong class="text-purple-600">L293D dual H-Bridge motor driver</strong> to control a 12V DC motor, enabling the Raspberry Pi to manage both speed via PWM and direction via logic signals.
+                            </p>
+                            <p>
+                                An <strong class="text-purple-600">FC-51 IR proximity sensor</strong> tracks RPM data from the motor, with its digital output fed to an RPi GPIO input for real-time monitoring.
+                            </p>
+                            <p>
+                                An <strong class="text-purple-600">IRFZ34 N-Channel MOSFET</strong> acts as a low-side switch for an LED indicator, providing visual feedback when the motor is active.
+                            </p>
+                        </div>
+                    </div>
 
-                    <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <span class="text-3xl">⚡</span>
-                            Power & Safety
-                        </h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3">
-                                <span class="text-green-500 text-xl">✓</span>
-                                <span class="text-gray-700">Motor powered by external <strong>12V DC supply</strong></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-green-500 text-xl">✓</span>
-                                <span class="text-gray-700">L293D logic and IR sensor powered by <strong>RPi 5V pin</strong></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-green-500 text-xl">✓</span>
-                                <span class="text-gray-700"><strong>Common ground</strong> between RPi and motor circuit</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-green-500 text-xl">✓</span>
-                                <span class="text-gray-700">Internal flyback diodes and thermal shutdown protection</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-yellow-500 text-xl">⚠️</span>
-                                <span class="text-gray-700">FC-51 IR sensor must use <strong>5V, not 12V</strong> to prevent damage</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                    <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                            <span class="text-3xl">⚡</span>
+                            Power & Safety
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700">Motor powered by external <strong>12V DC supply</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700">L293D logic and IR sensor powered by <strong>RPi 5V pin</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700"><strong>Common ground</strong> between RPi and motor circuit</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-500 text-xl">✓</span>
+                                <span class="text-gray-700">Internal flyback diodes and thermal shutdown protection</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-500 text-xl">⚠️</span>
+                                <span class="text-gray-700">FC-51 IR sensor must use <strong>5V, not 12V</strong> to prevent damage</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl shadow-xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Circuit Schematic</h3>
+                    <img src="images/Motor_Schematic.png" 
+                         alt="Circuit schematic diagram"
+                         class="rounded-xl w-full h-auto border border-gray-200">
+                </div>
 
                 <div class="card-hover bg-white rounded-2xl shadow-xl p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Circuit Schematic</h3>
-                    <img src="images/Motor_Schematic.png" 
-                         alt="Circuit schematic diagram"
-                         class="rounded-xl w-full h-auto border border-gray-200">
-                </div>
-
-                <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Raspberry Pi Pin Assignments (BCM)</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full">
-                            <thead class="gradient-bg text-white">
-                                <tr>
-                                    <th class="px-6 py-4 text-left text-sm font-semibold">Pin (BCM)</th>
-                                    <th class="px-6 py-4 text-left text-sm font-semibold">Function</th>
-                                    <th class="px-6 py-4 text-left text-sm font-semibold">Description</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-purple-50 transition">
-                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 17</td>
-                                    <td class="px-6 py-4 text-sm font-medium">PWM Output</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Speed control to L293D Enable pin</td>
-                                </tr>
-                                <tr class="hover:bg-purple-50 transition">
-                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 23</td>
-                                    <td class="px-6 py-4 text-sm font-medium">Direction 1</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D Input 1A</td>
-                                </tr>
-                                <tr class="hover:bg-purple-50 transition">
-                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 24</td>
-                                    <td class="px-6 py-4 text-sm font-medium">Direction 2</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D Input 2A</td>
-                                </tr>
-                                <tr class="hover:bg-purple-50 transition">
-                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 5</td>
-                                    <td class="px-6 py-4 text-sm font-medium">IR Sensor Input</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Reads digital output from FC-51</td>
-                                </tr>
-                                <tr class="hover:bg-purple-50 transition">
-                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">5V</td>
-                                    <td class="px-6 py-4 text-sm font-medium">Logic Power</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Supplies 5V to L293D & sensor</td>
-                                </tr>
-                                <tr class="hover:bg-purple-50 transition">
-                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GND</td>
-                                    <td class="px-6 py-4 text-sm font-medium">Ground</td>
-                                    <td class="px-6 py-4 text-sm text-gray-600">Common ground for all components</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                        <span class="text-3xl">🧰</span>
+                        Circuit Components Checklist
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+                        <div>
+                            <h4 class="font-bold text-lg text-purple-600 mb-3">Required Components</h4>
+                            <ul class="space-y-2 list-disc list-inside">
+                                <li><strong>Raspberry Pi 4</strong> (or similar compatible model)</li>
+                                <li><strong>L293D Motor Driver IC</strong></li>
+                                <li><strong>12V DC Motor</strong></li>
+                                <li>**FC-51 IR Sensor** (for RPM measurement)</li>
+                                <li>**LED Indicator** (e.g., 5mm red LED)</li>
+                                <li>**IRF524 N-Channel MOSFET** (or NPN Transistor)</li>
+                                <li>**12V Power Supply** (DC)</li>
+                                <li>**220Ω Resistor** (for LED current limiting)</li>
+                                <li>**10kΩ Resistor** (for MOSFET/transistor base)</li>
+                                <li>Assorted **Jumper Wires**</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <h4 class="font-bold text-lg text-purple-600 mb-3">Optional but Recommended Tools</h4>
+                            <ul class="space-y-2 list-disc list-inside">
+                                <li>**Breadboard** (essential for prototyping and testing)</li>
+                                <li>**Multimeter** (crucial for testing power, ground, and pin voltages)</li>
+                                <li>Soldering Iron and Solder (for more permanent connections)</li>
+                                <li>Wire Strippers</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
+                                <div class="card-hover bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Raspberry Pi Pin Assignments (BCM)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead class="gradient-bg text-white">
+                                <tr>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold">Pin (BCM)</th>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold">Function</th>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 17</td>
+                                    <td class="px-6 py-4 text-sm font-medium">PWM Output</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Speed control to L293D Enable pin</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 23</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Direction 1</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D Input 1A</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 24</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Direction 2</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Motor direction to L293D Input 2A</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GPIO 5</td>
+                                    <td class="px-6 py-4 text-sm font-medium">IR Sensor Input</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Reads digital output from FC-51</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">5V</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Logic Power</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Supplies 5V to L293D & sensor</td>
+                                </tr>
+                                <tr class="hover:bg-purple-50 transition">
+                                    <td class="px-6 py-4 text-sm font-bold text-purple-600">GND</td>
+                                    <td class="px-6 py-4 text-sm font-medium">Ground</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Common ground for all components</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- AI Tools Section -->
         <section id="ai-tools" class="py-24 bg-white">
             <div class="container mx-auto max-w-7xl px-6">
