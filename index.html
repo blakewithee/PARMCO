@@ -608,161 +608,194 @@
                         Code Libraries & Frameworks
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        A detailed breakdown of every library used in this project and the reasoning behind each choice
+                        A detailed breakdown of every library, including trade-offs and selection rationale.
                     </p>
                 </div>
-
-                <!-- iOS Libraries -->
+        
                 <div class="mb-12">
                     <h3 class="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                        <span class="text-4xl">📱</span>
-                        iOS Application Libraries
-                    </h3>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
-                            <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">SwiftUI</h4>
-                                <span class="bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">UI Framework</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Apple's declarative UI framework for building native iOS interfaces with less code and real-time previews.
-                            </p>
-                            <div class="bg-purple-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-purple-700">Why we used it:</strong> Modern, intuitive syntax allows rapid UI development. State management and reactive updates perfect for real-time motor control feedback. Native performance and seamless iOS integration.</p>
-                            </div>
-                        </div>
-
-                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
-                            <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">CoreBluetooth</h4>
-                                <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">BLE Framework</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Apple's framework for communicating with Bluetooth Low Energy devices as Central or Peripheral.
-                            </p>
-                            <div class="bg-blue-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-blue-700">Why we used it:</strong> Industry-standard for BLE communication on iOS. Provides complete control over scanning, connecting, and GATT operations. Essential for wireless motor control implementation.</p>
-                            </div>
-                        </div>
-
-                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-                            <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">Combine</h4>
-                                <span class="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Reactive Framework</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Apple's reactive programming framework for handling asynchronous events and data streams.
-                            </p>
-                            <div class="bg-green-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-green-700">Why we used it:</strong> Elegant handling of BLE callbacks and state changes. Publishers and subscribers simplify data flow from UI to Bluetooth layer. Reduces callback complexity.</p>
-                            </div>
-                        </div>
-
-                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
-                            <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">Foundation</h4>
-                                <span class="bg-orange-100 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">Core Library</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Fundamental framework providing essential data types, collections, and operating system services.
-                            </p>
-                            <div class="bg-orange-50 rounded-lg p-4">
-                                <p class="text-sm text-gray-700"><strong class="text-orange-700">Why we used it:</strong> Required for Data types in BLE communication, UUID handling for GATT services/characteristics, and Timer functionality for periodic updates.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Raspberry Pi Libraries -->
-                <div>
-                    <h3 class="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
                         <span class="text-4xl">🖥️</span>
-                        Raspberry Pi Libraries
+                        Raspberry Pi C Libraries
                     </h3>
                     
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">GLib / GIO</h4>
+                                <span class="bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">D-Bus / Event Loop</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                The core library enabling asynchronous D-Bus communication with the BlueZ Bluetooth stack.
+                            </p>
+                            <div class="bg-red-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-red-700">Rationale:</strong> Chosen over PyBluez or Bleak because it is the only reliable way to implement a **GATT Server** (peripheral role) on Linux using the native, well-maintained BlueZ stack.
+                                </p>
+                            </div>
+                        </div>
+        
                         <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
                             <div class="flex items-start justify-between mb-4">
                                 <h4 class="text-xl font-bold text-gray-800">BlueZ</h4>
                                 <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Bluetooth Stack</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                The official Linux Bluetooth protocol stack. The system interacts directly with the BlueZ daemon to manage BLE connections.
+                                The official Linux Bluetooth protocol stack, accessed via the high-level D-Bus interfaces.
                             </p>
                             <div class="bg-blue-50 rounded-lg p-4">
                                 <p class="text-sm text-gray-700">
-                                    <strong class="text-blue-700">Code Usage:</strong> 
-                                    Accessed via GDBus to register the GATT application and handle D-Bus method calls like <code class="bg-blue-100 px-1 rounded">WriteValue</code> for incoming iPhone commands.
+                                    <strong class="text-blue-700">Code Usage:</strong> The C program uses interfaces like <code class="bg-blue-100 px-1 rounded">GattManager1</code> to register the **Nordic UART Service (NUS)** and handle iPhone <code class="bg-blue-100 px-1 rounded">WriteValue</code> commands.
                                 </p>
                             </div>
                         </div>
-
+        
                         <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-indigo-500">
                             <div class="flex items-start justify-between mb-4">
                                 <h4 class="text-xl font-bold text-gray-800">pigpio</h4>
-                                <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">Hardware Control</span>
+                                <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">Hardware PWM</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                The core hardware interface library used for controlling GPIO pins with high precision.
+                                High-performance C library providing direct hardware GPIO access and true hardware PWM control.
                             </p>
                             <div class="bg-indigo-50 rounded-lg p-4">
                                 <p class="text-sm text-gray-700">
-                                    <strong class="text-indigo-700">Code Usage:</strong> 
-                                    Generates hardware-timed PWM for motor speed and uses <code class="bg-indigo-100 px-1 rounded">gpioTick()</code> to capture microsecond-precise timestamps for RPM calculations.
+                                    <strong class="text-indigo-700">Rationale:</strong> Chosen because it is the **only actively maintained** option that provides **hardware PWM**, which is essential for smooth motor control without audible whining.
                                 </p>
                             </div>
                         </div>
-
+        
                         <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-pink-500">
                             <div class="flex items-start justify-between mb-4">
                                 <h4 class="text-xl font-bold text-gray-800">pthread</h4>
                                 <span class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full">Concurrency</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                POSIX threading library used to run critical monitoring tasks in parallel with the main control loop.
+                                The standard POSIX threading library used for managing concurrent execution of tasks.
                             </p>
                             <div class="bg-pink-50 rounded-lg p-4">
                                 <p class="text-sm text-gray-700">
-                                    <strong class="text-pink-700">Code Usage:</strong> 
-                                    Runs the RPM sensor monitoring in a separate thread to catch every blade pulse, using <code class="bg-pink-100 px-1 rounded">pthread_mutex</code> to safely update shared data.
+                                    <strong class="text-pink-700">Code Usage:</strong> Used to run the **RPM monitoring in a separate thread** to maintain microsecond-level precision while the main loop handles command processing and I/O.
                                 </p>
                             </div>
                         </div>
-
+        
                         <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-teal-500">
                             <div class="flex items-start justify-between mb-4">
-                                <h4 class="text-xl font-bold text-gray-800">IPC (Named Pipes)</h4>
-                                <span class="bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full">Inter-Process</span>
+                                <h4 class="text-xl font-bold text-gray-800">Named Pipes (FIFO)</h4>
+                                <span class="bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full">Inter-Process Comm.</span>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Standard C library functions used to create a bridge between the BLE Server and Motor Control processes.
+                                A low-latency, text-based POSIX mechanism for inter-process communication (IPC).
                             </p>
                             <div class="bg-teal-50 rounded-lg p-4">
                                 <p class="text-sm text-gray-700">
-                                    <strong class="text-teal-700">Code Usage:</strong> 
-                                    Uses <code class="bg-teal-100 px-1 rounded">mkfifo</code> to create <code class="text-xs">/tmp/motor_pipe</code>, allowing the BLE service to send commands to the motor controller asynchronously.
+                                    <strong class="text-teal-700">Rationale:</strong> Chosen as the simplest, most debuggable IPC method, beating complex alternatives like sockets or shared memory for low-frequency command passing.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">math.h</h4>
+                                <span class="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Mathematics</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Standard C math library providing mathematical functions for control algorithms.
+                            </p>
+                            <div class="bg-yellow-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-yellow-700">Code Usage:</strong> Essential for implementing the **PID controller**, which uses functions like <code class="bg-yellow-100 px-1 rounded">fabs()</code> for calculating the absolute value of the RPM error.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Technology Stack Tags -->
+        
+                <div class="mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3">
+                        <span class="text-4xl">📱</span>
+                        iOS Application Frameworks
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">CoreBluetooth</h4>
+                                <span class="bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">BLE Framework</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Apple's native framework for implementing the BLE Central role (scanning, connecting, GATT).
+                            </p>
+                            <div class="bg-purple-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-purple-700">Rationale:</strong> This is the **only viable option** for performing BLE communication on the iOS platform.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">UIKit</h4>
+                                <span class="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">UI Framework</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                The mature and performant framework providing the app's main view controllers and UI components.
+                            </p>
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-green-700">Rationale:</strong> Chosen over SwiftUI for better **stability and reliability** when integrating complex BLE callbacks and ensuring compatibility with older iOS versions.
+                                </p>
+                            </div>
+                        </div>
+        
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">SpriteKit</h4>
+                                <span class="bg-orange-100 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">2D Game Engine</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Apple's native 2D game framework used to implement the Flappy Bird-style control game.
+                            </p>
+                            <div class="bg-orange-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-orange-700">Rationale:</strong> Provides a native, performant **physics engine** for collision detection, which is superior to implementing custom animation in UIKit.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hover bg-white rounded-xl shadow-lg p-6 border-l-4 border-cyan-500">
+                            <div class="flex items-start justify-between mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">Foundation</h4>
+                                <span class="bg-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full">Core Utilities</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                The fundamental framework providing essential data types, collections, and threading utilities.
+                            </p>
+                            <div class="bg-cyan-50 rounded-lg p-4">
+                                <p class="text-sm text-gray-700">
+                                    <strong class="text-cyan-700">Code Usage:</strong> Necessary for handling <code class="bg-cyan-100 px-1 rounded">Data</code> types for BLE communication and managing threading via <code class="bg-cyan-100 px-1 rounded">DispatchQueue</code>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
                 <div class="mt-16 text-center">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6">Complete Technology Stack</h3>
                     <div class="flex flex-wrap justify-center gap-3">
                         <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Swift</span>
-                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">SwiftUI</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full">CoreBluetooth</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full">UIKit</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-4 py-2 rounded-full">SpriteKit</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">CoreBluetooth</span>
                         <span class="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded-full">C</span>
-                        <span class="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded-full">BlueZ</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full">BlueZ</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-4 py-2 rounded-full">GLib / GIO</span>
                         <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full">pigpio</span>
-                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-full">Bluetooth LE</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-full">POSIX Threads</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-4 py-2 rounded-full">Named Pipes (FIFO)</span>
                         <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2 rounded-full">GATT Protocol</span>
-                        <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-4 py-2 rounded-full">GLib</span>
-                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-4 py-2 rounded-full">pthreads</span>
-                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-4 py-2 rounded-full">Raspberry Pi OS</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded-full">PID Control</span>
                     </div>
                 </div>
             </div>
