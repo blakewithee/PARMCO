@@ -441,34 +441,77 @@
                     <span class="text-3xl">🧰</span>
                     Circuit Components Checklist
                 </h3>
-                <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+                <div class="grid md:grid-cols-2 gap-8 text-gray-700">
                     <div>
                         <h4 class="font-bold text-lg text-purple-600 mb-3">Required Components</h4>
-                        <ul class="space-y-2 list-disc list-inside">
-                            <li><strong>Raspberry Pi 4</strong> (or similar compatible model)</li>
-                            <li><strong>L293D Motor Driver IC</strong></li>
-                            <li>**12V DC Motor**</li>
-                            <li>**FC-51 IR Sensor** (for RPM measurement)</li>
-                            <li>**LED Indicator** (e.g., 5mm red LED)</li>
-                            <li>**IRF524 N-Channel MOSFET** (or NPN Transistor)</li>
-                            <li>**12V Power Supply** (DC)</li>
-                            <li>**220Ω Resistor** (for LED current limiting)</li>
-                            <li>**10kΩ Resistor** (for MOSFET/transistor base)</li>
-                            <li>Assorted **Jumper Wires**</li>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>Raspberry Pi 4</strong> (or similar compatible model)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>L293D Motor Driver IC</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>12V DC Motor</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>FC-51 IR Sensor</strong> (for RPM measurement)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>LED Indicator</strong> (e.g., 5mm red LED)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>IRFZ34 N-Channel MOSFET</strong> (or NPN Transistor)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>12V Power Supply</strong> (DC)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>220Ω Resistor</strong> (for LED current limiting)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>10kΩ Resistor</strong> (for MOSFET/transistor base)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span>Assorted <strong>Jumper Wires</strong></span>
+                            </li>
                         </ul>
                     </div>
                     
-                    <div class="md:col-span-2">
+                    <div>
                         <h4 class="font-bold text-lg text-purple-600 mb-3">Optional but Recommended Tools</h4>
-                        <ul class="space-y-2 list-disc list-inside">
-                            <li>**Breadboard** (essential for prototyping and testing)</li>
-                            <li>**Multimeter** (crucial for testing power, ground, and pin voltages)</li>
-                            <li>Soldering Iron and Solder (for more permanent connections)</li>
-                            <li>Wire Strippers</li>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>Breadboard</strong> (essential for prototyping and testing)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>Multimeter</strong> (crucial for testing power, ground, and pin voltages)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>Soldering Iron and Solder</strong> (for more permanent connections)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-purple-500 mt-1">•</span>
+                                <span><strong>Wire Strippers</strong></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
+              
             <div class="card-hover bg-white rounded-2xl shadow-xl p-8 mb-8">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Circuit Schematic</h3>
                 <img src="images/Motor_Schematic.png" 
@@ -919,6 +962,29 @@
                 </div>
             </div>
         </section>
+
+        <section id="music" class="py-12 bg-white border-t border-gray-200">
+            <div class="container mx-auto max-w-xl px-6 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center gap-3">
+                    <span class="text-3xl text-purple-600">🎧</span>
+                    Project Theme Song
+                </h3>
+                <p class="text-gray-600 mb-4">
+                    Listen to the official PARMCO development soundtrack.
+                </p>
+                <div class="shadow-xl rounded-lg overflow-hidden border border-gray-300">
+                    <audio controls loop preload="auto" class="w-full bg-gray-100 p-2">
+                        <source src="parmcoSong.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="bg-gray-900 text-white py-12">
+        ...
     </main>
 
     <footer class="bg-gray-900 text-white py-12">
